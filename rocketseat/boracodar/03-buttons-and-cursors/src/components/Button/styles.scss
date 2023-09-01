@@ -1,0 +1,86 @@
+:root {
+  --bg-color: #8257e5;
+  --hover-color: #9674e5;
+}
+
+.secondary {
+  --bg-color: #3C3748;
+  --hover-color: #6A617F;
+}
+
+.tertiary {
+  --bg-color: transparent;
+  --hover-color: transparent;
+}
+
+button {
+  background: var(--bg-color);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  border: 0;
+  border-radius: 1.5rem;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  text-transform: uppercase;
+
+  transition: background 0.2s;
+
+  &:hover {
+    background: var(--hover-color);
+  }
+
+  &:focus {
+    outline: 2px solid #d9cdf7 ;
+  }
+}
+
+.hover {
+  background: var(--hover-color);
+}
+
+.focus {
+  outline: 2px solid #d9cdf7 ;
+}
+
+.disabled {
+  opacity: 0.56;
+  cursor: not-allowed;
+
+  &:hover {
+    background: var(--bg-color);
+  }
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: max-content;
+  cursor: progress;
+
+  svg {
+    animation: spin 700ms infinite linear;
+  }
+}
+
+.movable {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: max-content;
+  cursor: move;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

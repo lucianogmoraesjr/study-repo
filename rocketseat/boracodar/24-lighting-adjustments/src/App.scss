@@ -1,0 +1,73 @@
+main {
+  width: 43rem;
+  height: 93.2rem;
+  background: #151515;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-inline: 5.4rem;
+  position: relative;
+  overflow: hidden;
+
+  .preview{
+    display: flex;
+    width: 84.6rem;
+    height: 84.6rem;
+    background: hsl(0, 100%, 50%);
+    border-radius: 50%;
+    box-shadow: 0px 0px 53px 13px red;
+    position: absolute;
+    top: -50rem;
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 32.1rem;
+    gap: 8.2rem;
+
+    .hue,
+    .brightness,
+    .contrast {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+    }
+
+    .hue,
+    .brightness,
+    .contrast {
+      &>div {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        border-radius: 1.2rem;
+      }
+    }
+
+    .hue>div {
+      border-radius: 1.2rem;
+      background: linear-gradient(90deg, #F00 5.21%, #FF8A00 16.48%, #FFE600 27.74%, #14FF00 39.35%, #00A3FF 49.37%, #0500FF 61.18%, #AD00FF 72.26%, #FF00C7 83.53%, #F00 94.61%);
+    }
+  }
+}
+
+span {
+  font-size: 3.2rem;
+  line-height: 3.8rem;
+  text-align: center;
+  margin: 35rem 0 10rem
+}
+
+svg {
+  font-size: 2.4rem;
+}
+
+input[type="range"] {
+  width: 28.1rem;
+  height: .5rem;
+  appearance: none;
+  background: transparent;
+}

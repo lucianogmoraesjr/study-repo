@@ -1,0 +1,142 @@
+#app {
+  height: 100vh;
+  max-width: 42.8rem;
+  margin-left: auto;
+  background: var(--color-surface-color);
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+
+  header {
+    font-size: 2rem;
+    color: var(--color-text-color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-stroke-color);
+    padding: 2.4rem 3.2rem;
+  }
+
+  main {
+    padding: 3.2rem;
+    display: grid;
+    place-content: start;
+    gap: 4.8rem;
+
+    overflow-y: scroll;
+
+    .item {
+      display: flex;
+      gap: 2.4rem;
+
+      img {
+        width: 10.4rem;
+        height: 10.4rem;
+        object-fit: cover;
+        border-radius: .8rem;
+      }
+
+      .title {
+        color: var(--color-text-color-secondary);
+      }
+
+      .price-qty {
+        margin-top: 1.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .price {
+          font-weight: 700;
+        }
+
+        .qty {
+          span, button{
+            width: 4rem;
+            height: 4rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 0;
+          }
+
+          button {
+            background: transparent;
+            border: 1px solid var(--color-stroke-color);
+            border-radius: .8rem;
+            color: var(--color-brand-color-light);
+            font-size: 1.6rem;
+            cursor: pointer;
+
+            &.sub:hover {
+              color: var(--color-text-color-primary);
+              border-color: var(--color-brand-color-light);
+            }
+
+            &.add {
+              border-color: var(--color-brand-color-light);
+
+              &:hover {
+                background: var(--color-brand-color-light);
+                color: var(--color-text-color-primary);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    padding: 3.2rem;
+    border-top: 1px solid var(--color-stroke-color);
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 2rem;
+    }
+
+    .coupon {
+      margin-top: 1.6rem;
+      color: var(--color-brand-color-light);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: .8rem;
+
+      svg {
+        font-size: 2rem;
+      }
+    }
+
+    button {
+      margin-top: 3.2rem;
+      background: var(--color-brand-color);
+      color: var(--color-text-color-primary);
+      border: 0;
+      font-size: 2rem;
+      padding-block: 2rem;
+      width: 100%;
+      border-radius: .8rem;
+
+      transition: background 400ms;
+
+      &:hover {
+        background: var(--color-brand-color-light);
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: .6rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-stroke-color);
+  border-radius: .8rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background-color);
+}

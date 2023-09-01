@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  font-size: 62.5%;
+
+  --purple-normal: #8860e6;
+	--purple-dark: #5b409b;
+	--gray-dark: #202024;
+	--gray-light: #f3f4fe;
+	--sucess: #04d361;
+	--danger: #ff8f8f;
+	--gradient: linear-gradient(to bottom, #dee0fc 0%,#996dff 51.04%,#bc9fff 100%);
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  place-content: center;
+  background: url(./assets/background.jpg) no-repeat center center/cover;
+  
+  font-family: 'Space Grotesk';
+  font-size: 1.6rem;
+  color: white;
+}

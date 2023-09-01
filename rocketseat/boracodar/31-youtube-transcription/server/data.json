@@ -1,0 +1,47 @@
+{
+  "text": " E aí, Eric Wendel aqui. E hoje a gente vai falar o porquê que o Frontier a gente tá adquirindo tantas responsabilidades e cada vez menos a gente precisa de um back-end pra nossa... Que f*** é essa, velho?",
+  "chunks": [
+    {
+      "timestamp": [
+        0,
+        2.3
+      ],
+      "text": " E aí, Eric Wendel aqui."
+    },
+    {
+      "timestamp": [
+        2.3,
+        4.2
+      ],
+      "text": " E hoje a gente vai falar o porquê que o Frontier"
+    },
+    {
+      "timestamp": [
+        4.2,
+        6.3
+      ],
+      "text": " a gente tá adquirindo tantas responsabilidades"
+    },
+    {
+      "timestamp": [
+        6.3,
+        8.9
+      ],
+      "text": " e cada vez menos a gente precisa de um back-end"
+    },
+    {
+      "timestamp": [
+        8.9,
+        9.6
+      ],
+      "text": " pra nossa..."
+    },
+    {
+      "timestamp": [
+        9.6,
+        11.5
+      ],
+      "text": " Que f*** é essa, velho?"
+    }
+  ]
+}

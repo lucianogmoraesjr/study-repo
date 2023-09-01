@@ -1,0 +1,239 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 13.8rem;
+}
+
+.github {
+  width: 38.4rem;
+
+  h1 {
+    width: 34rem;
+    background: var(--linear, linear-gradient(90deg, #DEE0FC 0%, #996DFF 51.04%, #BC9FFF 100%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+
+    font-size: 4rem;
+    font-weight: 400;
+    line-height: 130%;
+    text-transform: uppercase;
+  }
+
+  .success-wrapper {
+    margin-top: 3.2rem;
+    margin-bottom: .8rem;
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+
+    svg {
+      width: 3.2rem;
+      height: 3.2rem;
+
+      color: var(--sucess);
+    }
+
+    span {
+      color: var(--gray-light, #F3F4FE);
+
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 160%;
+      text-transform: uppercase;
+    }
+  }
+
+  form {
+    margin-top: 3.2rem;
+
+    label {
+      color: var(--gray-light, #F3F4FE);
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 160%;
+      text-transform: uppercase;
+    }
+
+    .input-wrapper {
+      width: 100%;
+      margin-top: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.6rem 1.2rem;
+
+      background: var(--gray-light);
+
+      &:focus-within {
+        outline: .4rem solid var(--purple-normal);
+      }
+
+      input {
+        width: 100%;
+
+        background: transparent;
+        border: 0;
+        outline: 0;
+
+        color: var(--gray-dark, #202024);
+        font-family: 'Roboto';
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 160%;
+
+        &::placeholder {
+          color: var(--gray-dark, #202024);
+        }
+      }
+    }
+
+    span {
+      display: inline-block;
+      margin-top: .8rem;
+
+      color: var(--danger, #FF8F8F);
+
+      font-family: 'Roboto';
+      font-size: 1.8rem;
+      font-weight: 400;
+      line-height: 160%;
+    }
+  }
+
+  button {
+    margin-top: 1.6rem;
+    width: 100%;
+    padding: 2.2rem 4rem;
+
+    background: var(--purple-normal);
+    border: 0;
+    cursor: pointer;
+
+    color: var(--neutral-colors-white, #FFF);
+    text-align: center;
+    font-family: 'Roboto';
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    
+    transition: background 200ms ease-in-out;
+
+    &:hover {
+      background: var(--purple-dark);
+    }
+
+    &.loading {
+      cursor: wait;
+
+      svg {
+        animation: spin 1s linear infinite;
+      }
+    }
+  }
+}
+
+.ticket {
+  width: 69.4rem;
+  padding: 4.5rem;
+
+  background: url(./assets/ticket-background.png) no-repeat center/ cover;
+}
+
+.ticket-card {
+  display: flex;
+
+  background: var(--gray-light);
+}
+
+.ticket-info {
+  width: 100%;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  color: var(--gray-dark);
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .8rem;
+
+    img {
+      width: 12rem;
+      height: 12rem;
+      border-radius: 50%;
+    }
+
+    span {
+      color: var(--gray-dark, #202024);
+      text-align: center;
+      font-family: 'Roboto';
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 125%;
+
+      &:first-of-type {
+        color: var(--purple-normal, #8860E6);
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 500;
+        line-height: 125%;
+        letter-spacing: 0.126rem;
+        text-transform: uppercase;
+      }
+    }
+
+  }
+
+  .event-info-wrapper {
+    width: 100%;
+
+    .event-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      color: var(--gray-dark, #202024);
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.6rem;
+      letter-spacing: 0.105rem;
+      text-transform: uppercase;
+
+      &+.event-info {
+        margin-top: .2rem;
+      }
+
+      & span:nth-child(2) {
+        font-weight: 700;
+      }
+    }
+
+    .lines {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 100%;
+      }
+    }
+
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

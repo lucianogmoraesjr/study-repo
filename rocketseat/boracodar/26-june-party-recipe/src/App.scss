@@ -1,0 +1,91 @@
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5.6rem;
+  margin: 11.2rem 18rem 5.6rem 18rem;
+
+  h1 {
+    color: #58190A;
+    font-size: 7.2rem;
+    font-weight: 700;
+    line-height: 0.8;
+  }
+
+  p {
+    color: #58190A;
+    font-size: 3.8rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .portions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    span {
+      color: #9B6647;
+      font-size: 3.5rem;
+    }
+
+    button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    p {
+      color: #9B6647;
+    }
+  }
+}
+
+.bottom {
+  background: #9B6647;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  gap: 6.4rem;
+  padding: 6.4rem 5rem;
+
+  .ingredients,
+  .preparation {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3.2rem;
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      h2 {
+        color: #FEECE0;
+        font-size: 3.8rem;
+        font-weight: 700;
+      }
+    }
+
+    ul,
+    ol {
+      padding-left: 3.8rem;
+
+      li {
+        color: #fff;
+        font-size: 2.8rem;
+        font-family: 'Source Sans 3', sans-serif;
+      }
+    }
+  }
+}

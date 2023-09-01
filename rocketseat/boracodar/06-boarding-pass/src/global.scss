@@ -1,0 +1,22 @@
+:root {
+  font-size: 62.5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: -0.04rem; 
+  background: linear-gradient(135deg, #8257E5 0%, #271A45 100%) no-repeat fixed;
+}
+
+h1, strong {
+  font-weight: 500;
+}

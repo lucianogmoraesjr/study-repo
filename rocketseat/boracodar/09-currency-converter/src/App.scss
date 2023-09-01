@@ -1,0 +1,186 @@
+#container {
+  padding: 6.4rem 8rem;
+  border-radius: 1.6rem;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 32px 0px rgba(15, 23, 42, 0.15);
+
+  display: grid;
+  gap: 6.4rem;
+}
+
+.money-wrapper {
+  background: #fff;
+  outline: .1rem solid #94a3b8;
+  width: 27rem;
+  padding: 1.6rem;
+  border-radius: .8rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &:hover,
+  &:has(:focus) {
+    outline: 0.25rem solid #7c3aed;
+  }
+
+  .amount-input {
+    border: 0;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: #0f172a;
+    width: 50%;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  .dropdown {
+    width: 13rem;
+    height: 5.6rem;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+
+    &:hover {
+      overflow: initial;
+      height: fit-content;
+    }
+
+    svg {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+    }
+
+    .selected {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      padding: 1.6rem;
+      border-radius: 0 0.8rem 0.8rem 0;
+      cursor: pointer;
+
+      &::before {
+        content: "";
+        height: 2.4rem;
+        width: 0.1rem;
+        background-color: #94a3b8;
+        position: absolute;
+        left: 0;
+      }
+
+      &::after {
+        content: "";
+        width: 2.4rem;
+        height: 2.4rem;
+        background: url('./assets/chevron.svg') no-repeat;
+      }
+
+      &:hover {
+        background: #EDE9FE;
+      }
+    }
+
+    ul {
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0px 4px 16px 0px rgba(15, 23, 42, 0.15);
+      padding: 0;
+      width: 16rem;
+      max-height: 17rem;
+      margin-top: .8rem;
+      overflow-y: scroll;
+
+      li {
+        display: flex;
+        align-items: center;
+        padding: 1.2rem 1.6rem;
+        gap: .8rem;
+        cursor: pointer;
+
+        &:hover {
+          background: #EDE9FE;
+        }
+      }
+    }
+  }
+}
+
+section {
+  h2 {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+}
+
+.converter {
+  .wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    margin-top: 1.6rem;
+  }
+}
+
+.exchange {
+  .wrapper {
+    margin-top: 2.4rem;
+  }
+}
+
+.tooltip {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0px 4px 16px 0px rgba(15, 23, 42, 0.15);
+  padding: .8rem;
+}
+
+.chart-controls {
+  display: flex;
+  justify-content: space-between;
+  margin: -2.2rem .8rem 0 4rem;
+
+  button {
+    background: transparent;
+    border: 0;
+    width: 4rem;
+    height: 2.4rem;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    text-align: center;
+    cursor: pointer;
+
+    &.active, &:hover {
+      background: #7c3aed;
+      color: #fff;
+      border-radius: 999px;
+    }
+  }
+}
+
+@media (max-width: 48rem) {
+  #container {
+    padding: 1.6rem;
+    gap: 3.2rem;
+
+    section {
+      h2 {
+        font-size: 1.6rem;
+      }
+    }
+
+    .converter {
+      .wrapper {
+        flex-direction: column;
+        gap: .8rem;
+      }
+    }
+  }
+
+  .money-wrapper {
+    width: 100%;
+  }
+}

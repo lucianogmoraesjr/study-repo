@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  font-size: 62.5%;
+
+  --gray-01: #d6d6f2;
+  --gray-02: #e2e2f5;
+  --purple: #bf7bfb;
+  --blue: #151557;
+  --blue-light: #212187;
+  --dark-blue: #000013;
+
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: 'Outfit', sans-serif;
+  height: 100vh;
+  background: url(./assets/bg.jpg) no-repeat center center/cover;
+}

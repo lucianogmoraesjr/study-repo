@@ -1,0 +1,200 @@
+body {
+  background: #1F2937;
+}
+
+#container {
+
+  form {
+    padding: 2.4rem;
+    max-width: 40rem;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .inputs {
+      margin-top: 4.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.4rem;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 1.4rem;
+      color: #e5e7eb;
+    }
+
+    input {
+      margin-top: .4rem;
+      width: 100%;
+      padding: 1.2rem;
+      border: .1rem solid #374151;
+      background: #111827;
+      border-radius: .4rem;
+      color: #f3f4f6;
+
+      &:focus {
+        outline: 0.15rem solid #9333ea;
+      }
+
+      &:invalid:focus {
+        outline: 0.15rem solid #fb7185;
+      }
+
+      &+.warning {
+        display: none;
+      }
+
+      &:invalid:focus+.warning {
+        font-size: 1.4rem;
+        margin-top: .8rem;
+        color: #fb7185;
+        display: flex;
+        align-items: center;
+        gap: .4rem;
+      }
+    }
+
+    .validity-cvv {
+      display: flex;
+      align-items: center;
+      gap: 2.4rem;
+
+      .input-wrapper:nth-child(2) {
+        flex-basis: 50%;
+      }
+
+      .help {
+        display: flex;
+        align-items: center;
+        gap: .4rem;
+
+        img {
+          width: 1.6rem;
+          height: 1.6rem;
+        }
+      }
+    }
+
+    .info-security {
+      margin-top: 4.8rem;
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      font-size: 1.4rem;
+      color: #e5e7eb;
+    }
+
+    button {
+      margin-top: 10rem;
+      width: 100%;
+      padding: 1.6rem;
+      border: 0;
+      border-radius: 0.4rem;
+      background: #9333EA;
+      box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.10);
+      color: #F9FAFB;
+      font-size: 1.8rem;
+      font-weight: 600;
+      line-height: 2.4rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: #a855f7;
+      }
+    }
+  }
+}
+
+#credit-card {
+  width: 32.8rem;
+  height: 21.2rem;
+  perspective: 60rem;
+
+  &:hover {
+    .front {
+      transform: rotateY(180deg);
+    }
+
+    .back {
+      transform: rotateY(0deg);
+    }
+  }
+
+  &:active {
+    .front {
+      transform: rotateY(180deg);
+    }
+
+    .back {
+      transform: rotateY(0deg);
+    }
+  }
+
+  &>div {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .front {
+    background: url(./assets/front.png) no-repeat;
+    transform: rotateY(0);
+  }
+
+  .back {
+    background: url(./assets/back.png) no-repeat;
+    transform: rotateY(-180deg);
+  }
+}
+
+@media (min-width: 800px) {
+  #container {
+    height: 100vh;
+    display: grid;
+    place-content: center;
+
+    form {
+      border-radius: 0.8rem;
+      border: 1px solid#374151;
+      background: #1F2937;
+      max-width: 73.6rem;
+      height: max-content;
+      display: grid;
+      grid-template-areas: 
+        "input card"
+        "input card"
+        "input security";
+
+      .inputs {
+        grid-area: input;
+        margin-right: 6.4rem;
+      }
+
+      .info-security {
+        grid-area: security;
+        margin: -10px;
+        justify-content: center;
+      }
+
+      button {
+        grid-column: 1/4;
+        margin-top: 4.8rem;
+      }
+    }
+  }
+
+  #credit-card {
+    grid-area: card;
+    margin-top: 30px;
+  }
+}

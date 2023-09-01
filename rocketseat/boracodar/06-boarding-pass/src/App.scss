@@ -1,0 +1,199 @@
+#container {
+   display: grid;
+   place-content: center;
+   height: 100vh;
+
+   #boarding-pass {
+     margin: 0 auto;
+
+     h1 {
+       font-size: 2rem;
+       color: #fff;
+       text-align: center;
+     }
+
+     #ticket {
+       margin-top: 2rem;
+       filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.25));
+
+       p {
+         font-size: 1.4rem;
+         line-height: 1.7rem;
+         color: #000;
+         opacity: 0.64;
+       }
+
+       strong {
+         font-size: 1.6rem;
+         line-height: 1.9rem;
+         color: #000;
+         opacity: 0.88;
+       }
+
+       section {
+         background: #fff;
+         box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.25);
+
+         padding: 2.4rem 3.2rem;
+          -webkit-mask: var(--mask);
+          mask: var(--mask)
+
+       }
+
+       .top {
+         border-radius: 2.4rem 2.4rem 0 0;
+         display: grid;
+         gap: 2.4rem;
+
+         --mask: radial-gradient(1.2rem at 1.2rem bottom, transparent 93%, black) -1.2rem;
+         -webkit-mask-repeat: repeat-x;
+         mask-repeat: repeat-x;
+
+         .flight {
+           display: grid;
+           grid-auto-flow: column;
+           position: relative;
+
+           time {
+             color: #000;
+             opacity: 0.8;
+
+             sup {
+               font-weight: 500;
+               font-size: 1rem;
+               line-height: 1.2rem;
+             }
+           }
+
+           .date {
+             text-align: right;
+           }
+
+           .departure {
+             display: grid;
+
+             strong {
+               font-size: 4rem;
+               line-height: 4.7rem;
+             }
+           }
+
+           .airplane {
+             position: absolute;
+             top: 50%;
+             left: 50%;
+             transform: translate(-50%, -50%);
+             display: flex;
+             align-items: center;
+             justify-content: center;
+           }
+
+           .arrival {
+             display: grid;
+             text-align: right;
+
+
+             strong {
+               font-size: 4rem;
+               line-height: 4.7rem;
+             }
+           }
+         }
+       }
+
+       .middle {
+         display: grid;
+         grid-auto-flow: column;
+         border: 1px dashed rgba(0, 0, 0, 0.32);
+         border-left: 0;
+         border-right: 0;
+
+         --mask: radial-gradient(1.2rem at 1.2rem 1.2rem, transparent 93%, black) -1.2rem -1.2rem;
+
+         .seat {
+           text-align: right;
+         }
+       }
+
+       .bottom {
+         border-radius: 0 0 2.4rem 2.4rem;
+
+         --mask: radial-gradient(1.2rem at 1.2rem top, transparent 93%, black) -1.2rem;
+         -webkit-mask-repeat: repeat-x;
+         mask-repeat: repeat-x;
+
+         .bottom-container {
+           display: grid;
+           grid-auto-flow: column;
+           align-items: center;
+           gap: .8rem;
+
+           dl {
+             display: grid;
+             gap: 1.6rem;
+             min-width: 9.5rem;
+
+             dt {
+               time {
+                 background: #633bbc;
+                 color: #fff;
+                 font-weight: 500;
+                 font-size: 1.6rem;
+                 line-height: 1.9rem;
+                 border-radius: 8px;
+                 padding: 0.4rem 0.8rem;
+                 display: inline-block;
+                 margin-top: 0.2rem;
+               }
+             }
+           }
+
+           .qrcode {
+             display: grid;
+             justify-items: center;
+
+             img {
+               height: 160px;
+               width: 160px;
+             }
+           }
+         }
+
+         &>p {
+           text-align: center;
+           margin-top: 2.4rem;
+           font-size: 1.6rem;
+           line-height: 2rem;
+           color: #000;
+           opacity: 0.8;
+         }
+       }
+     }
+
+     footer {
+       font-size: 1.4rem;
+       line-height: 2.4rem;
+       color: #FFF;
+       opacity: 0.64;
+       text-align: center;
+       width: 27rem;
+       margin: 2rem auto;
+     }
+   }
+ }
+
+ @media (max-width: 600px) {
+  section {
+    box-shadow: none !important;
+    -webkit-mask: none !important;
+    border-radius: 2.4rem !important;
+  }
+
+  .top {
+    border-radius: 2.4rem !important;
+  }
+
+  .bottom {
+    border-radius: 2.4rem !important;
+  }
+ }

@@ -1,0 +1,167 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 9.6rem;
+  padding: 2.4rem 5.6rem;
+  border-radius: 4rem;
+  background-color: #fff;
+  max-width: 79.5rem;
+
+  .card-drag {
+    width: 16.8rem;
+    height: 1.8rem;
+    background: #e5d8ea;
+    margin-inline: auto;
+    border-radius: 999px;
+  }
+
+  .card-header {
+    h1 {
+      font-size: 4rem;
+      line-height: 4.8rem;
+      color: #372d3b;
+
+      span {
+        color: #864293;
+      }
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 2.4rem;
+      line-height: 3.2rem;
+      color: #372d3b
+    }
+  }
+
+  .card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .left {
+      display: flex;
+      align-items: center;
+
+      .driver {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+
+        .driver-avatar {
+          img {
+            width: 13.8rem;
+            height: 13.8rem;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+
+        .driver-stars {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 10rem;
+          height: 3.2rem;
+          color: #fbf8fc;
+          background: #372d3b;
+          border-radius: 999px;
+          gap: 1rem;
+          font-weight: 600;
+          font-size: 2rem;
+          line-height: 2.4rem;
+          margin-top: -3.2rem;
+
+          .star {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+
+        .driver-name {
+          font-weight: 700;
+          font-size: 1.8rem;
+          line-height: 2.2rem;
+          color: #372d3b;
+
+          margin-top: .6rem;
+        }
+      }
+
+      .car-img {
+        margin-left: -5rem;
+      }
+    }
+
+    .right {
+      .car-plate {
+        font-weight: 700;
+        font-size: 4.2rem;
+        line-height: 5rem;
+        color: #372d3b;
+      }
+
+      .car-model {
+        font-weight: 500;
+        font-size: 2.4rem;
+        line-height: 2.8rem;
+        color: #372d3b;
+      }
+    }
+  }
+
+  .card-footer {
+    display: flex;
+    gap: 3.2rem;
+    align-items: center;
+
+    .input-wrapper {
+      display: flex;
+      background: #f5edf7;
+      border-radius: 2.4rem;
+      height: 6.4rem;
+      padding: 0 3.2rem;
+      flex: 3;
+      align-items: center;
+
+      &:focus-within {
+        outline: 3px solid black;
+      }
+
+      input {
+        width: 100%;
+        border: 0;
+        background: transparent;
+        font-weight: 500;
+        font-size: 2.4rem;
+        line-height: 2.8rem;
+        color: #372d3b;
+
+        &::placeholder {
+          color: #372d3b;
+        }
+
+        &:focus {
+          outline: 0;
+        }
+      }
+
+      label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border-width: 0;
+        white-space: nowrap;
+      }
+    }
+
+    font-size: 5.6rem;
+  }
+}

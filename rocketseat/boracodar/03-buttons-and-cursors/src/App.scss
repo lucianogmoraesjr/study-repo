@@ -1,0 +1,89 @@
+#container {
+  max-width: 1600px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+
+  h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #fff;
+  }
+
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #fff;
+    opacity: 0.67;
+    font-size: 1.25rem;
+    width: 800px;
+    margin-top: 0.5rem;
+  }
+
+  .button-types {
+    padding: 6.25rem 4.75rem;
+  }
+
+  .buttons-table {
+    margin-top: 4.25rem;
+    background: #1C162C;
+    padding-bottom: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 8px;
+
+    table {
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+      border-collapse: collapse;
+      text-align: center;
+      width: 100%;
+      
+      th {
+        background: #1C162C;
+        border-radius: 8px;
+        padding: 1.75rem;
+        font-weight: 400;
+        font-size: 0.875rem;
+      }
+
+      tbody {
+        tr {
+          background: #0B0911;
+
+          td {
+            padding: 1.75rem;
+          }
+
+          td:first-child {
+            background: #1C162C;
+            font-size: 0.875rem;
+            padding: 1.75rem;
+          }
+        }
+
+      }
+    }
+  }
+
+  .button-test {
+    max-width: 410px;
+    overflow: hidden;
+    background: #130F1E;
+    padding: 6.25rem 2.75rem;
+    padding-bottom: 0;
+
+    p {
+      max-width: 350px;
+      margin-bottom: 4.25rem;
+    }
+
+    button {
+      width: 100%;
+
+      & + button {
+        margin-top: 2rem;
+      }
+    }
+  }
+}

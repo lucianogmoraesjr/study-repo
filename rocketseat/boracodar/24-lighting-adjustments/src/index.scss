@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  background: #242424;
+  color: white;
+  font-size: 1.6rem;
+  font-family: 'Raleway', sans-serif;
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}

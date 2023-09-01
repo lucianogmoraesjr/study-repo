@@ -1,0 +1,91 @@
+.select {
+  padding: 9.6rem;
+
+  &:has(.option input:checked) #category-select label {
+    color: var(--purple-light);
+  }
+
+  &:has(.option input:checked) #selected-value {
+    color: var(--gray-100);
+  }
+}
+
+#category-select {
+  position: relative;
+
+  label {
+    font-size: 1.2rem;
+    letter-spacing: .036rem;
+  }
+
+  &:has(#options-view-button:checked) + #options {
+    display: block;
+  }
+}
+
+#select-button {
+  margin-top: .8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem;
+
+  border-radius: .6rem;
+  border: 1px solid var(--gray-300);
+  background: var(--gray-400);
+}
+
+#selected-value {
+  color: var(--gray-200);
+  font-size: 1.4rem;
+  letter-spacing: .042rem;
+}
+
+#chevrons {
+  color: var(--gray-200);
+
+  svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    display: flex;
+
+    &#chevron-up {
+      display: none;
+    }
+  }
+}
+
+#options-view-button {
+  all: unset;
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  cursor: pointer;
+}
+
+#options-view-button:focus + #select-button,
+#options-view-button:checked + #select-button {
+  outline: 1px solid var(--purple-light);
+}
+
+#category-select:has(#options-view-button:checked) label,
+#options-view-button:checked + #select-button #chevrons {
+  color: var(--purple-light);
+}
+
+#options-view-button:checked + #select-button #chevrons #chevron-down {
+  display: none;
+}
+
+#options-view-button:checked + #select-button #chevrons #chevron-up {
+  display: block;
+}
+
+#options {
+  margin-top: .4rem;
+
+  border-radius: .6rem;
+  border: 1px solid var(--gray-300);
+  background: var(--gray-400);
+  display: none;
+}

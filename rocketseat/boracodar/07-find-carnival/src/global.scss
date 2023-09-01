@@ -1,0 +1,22 @@
+:root {
+  font-size: 62.5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: 'Roboto', sans-serif;
+  // background: #f8f8ff;
+}
+
+input, select, button {
+  font-family: 'Roboto', sans-serif;
+  all: unset;
+}
