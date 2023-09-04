@@ -1,0 +1,102 @@
+#orphanages-map {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: relative;
+
+  aside {
+    width: 44rem;
+    padding: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background: var(--gradiente-blue, linear-gradient(330deg, #29B6D1 0%, #00C7C7 100%));
+
+    h2 {
+      margin-top: 6.4rem;
+
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 4.2rem;
+    }
+
+    p {
+      margin-top: 2.4rem;
+      line-height: 2.8rem;
+    }
+
+    footer {
+      display: flex;
+      flex-direction: column;
+
+      line-height: 2.4rem;
+
+      strong {
+        font-weight: 800;
+      }
+    }
+  }
+
+  .create-orphanage {
+    position: absolute;
+    z-index: 999;
+    right: 4rem;
+    bottom: 4rem;
+    width: 6.4rem;
+    height: 6.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #15C3D6;
+    border-radius: 2rem;
+
+    transition: background 200ms ease-in-out;
+
+    svg {
+      color: #fff;
+      width: 2.4rem;
+      height: 2.4rem;
+      stroke-width: .3rem;
+    }
+
+    &:hover {
+      background: #17D6EB;
+    }
+  }
+
+  .map-popup {
+    .leaflet-popup-content-wrapper {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 2rem;
+      box-shadow: none;
+    }
+
+    .leaflet-popup-content {
+      color: #0089A5;
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin: .8rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      a {
+        width: 3.2rem;
+        height: 3.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 1.2rem;
+        background: #15C3D6;
+        box-shadow: 17px 27px 41px 0px rgba(23, 142, 166, 0.16);
+      }
+    }
+
+    .leaflet-popup-tip-container {
+      display: none;
+    }
+  }
+}
