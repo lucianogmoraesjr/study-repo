@@ -18,7 +18,7 @@
 <br/>
 
 <p align="center">
-  <img alt="Spacetime" src=".github/cover.png" width="80%">
+  <img alt="Spacetime" src=".github/cover.jpg" width="80%">
 </p>
 <br/>
 
