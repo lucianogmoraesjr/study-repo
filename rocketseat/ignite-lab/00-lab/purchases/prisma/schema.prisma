@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Custumer {
+  id         String   @id @default(uuid())
+  authUserId String?  @unique
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  purchases Purchase[]
+}
+
+model Product {
+  id        String   @id @default(uuid())
+  title     String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  purchasedOn Purchase[]
+}
+
+enum PurchaseStatus {
+  PENDING
+  APPROVED
+  FAILED
+}
+
+model Purchase {
+  id         String         @id @default(uuid())
+  custumerId String
+  productId  String
+  status     PurchaseStatus @default(PENDING)
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @default(now()) @updatedAt
+
+  custumer Custumer @relation(fields: [custumerId], references: [id])
+  product  Product  @relation(fields: [productId], references: [id])
+}

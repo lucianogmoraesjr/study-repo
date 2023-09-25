@@ -1,0 +1,10 @@
+mutation CreatePurchase ($productId: String!) {
+  createPurchase (
+    data: {
+      productId: $productId     
+    }
+  ) {
+    id
+  }
+}
+  
