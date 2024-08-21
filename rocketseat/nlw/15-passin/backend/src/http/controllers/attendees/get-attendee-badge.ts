@@ -7,10 +7,20 @@ export const getAttendeeBadge: FastifyPluginAsyncZod = async (app) => {
     '/attendees/:attendeeId/badge',
     {
       schema: {
+        tags: ['attendees'],
         params: z.object({
           attendeeId: z.coerce.number().int(),
         }),
-        response: {},
+        response: {
+          200: z.object({
+            badge: z.object({
+              name: z.string(),
+              email: z.string().email(),
+              eventTitle: z.string(),
+              checkInURL: z.string().url(),
+            }),
+          }),
+        },
       },
     },
     async (request, reply) => {
@@ -18,9 +28,24 @@ export const getAttendeeBadge: FastifyPluginAsyncZod = async (app) => {
 
       const getAttendeeBadgeUseCase = makeGetAttendeeBadgeUseCase()
 
-      const attendee = await getAttendeeBadgeUseCase.execute(attendeeId)
+      const { email, name, event } =
+        await getAttendeeBadgeUseCase.execute(attendeeId)
 
-      return reply.send({ attendee })
+      const baseURL = `${request.protocol}://${request.hostname}`
+
+      const checkInURL = new URL(
+        `/attendees/${attendeeId}/check-in`,
+        baseURL,
+      ).toString()
+
+      return reply.send({
+        badge: {
+          name,
+          email,
+          eventTitle: event.title,
+          checkInURL,
+        },
+      })
     },
   )
 }

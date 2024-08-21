@@ -1,3 +1,4 @@
+import { APIError } from '../../errors/api-error'
 import { EventsRepository } from '../../repositories/events-repository'
 import { generateSlug } from '../../utils/generate-slug'
 
@@ -20,7 +21,7 @@ export class CreateEventUseCase {
     const eventWithSameSlug = await this.eventsRepository.findBySlug(slug)
 
     if (eventWithSameSlug) {
-      throw new Error('A event with same slug already exists.')
+      throw new APIError(400, 'A event with same slug already exists.')
     }
 
     const event = await this.eventsRepository.create({

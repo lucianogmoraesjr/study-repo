@@ -1,3 +1,4 @@
+import { APIError } from '../../errors/api-error'
 import { AttendeesRepository } from '../../repositories/attendees-repository'
 import { EventsRepository } from '../../repositories/events-repository'
 
@@ -21,7 +22,10 @@ export class RegisterForEventUseCase {
       })
 
     if (attendeeFromEmail) {
-      throw new Error('This e-mail is already registered for this event.')
+      throw new APIError(
+        400,
+        'This e-mail is already registered for this event.',
+      )
     }
 
     const [event, amountOfAttendeesForEvent] = await Promise.all([
@@ -33,7 +37,8 @@ export class RegisterForEventUseCase {
       event?.maximumAttendees &&
       amountOfAttendeesForEvent >= event.maximumAttendees
     ) {
-      throw new Error(
+      throw new APIError(
+        400,
         'The maximum number of attendees for this event been reached.',
       )
     }

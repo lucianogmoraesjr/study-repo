@@ -7,6 +7,7 @@ export const getEvent: FastifyPluginAsyncZod = async (app) => {
     '/events/:eventId',
     {
       schema: {
+        tags: ['events'],
         params: z.object({
           eventId: z.string().uuid(),
         }),

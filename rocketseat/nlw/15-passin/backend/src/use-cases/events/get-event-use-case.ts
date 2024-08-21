@@ -1,3 +1,4 @@
+import { APIError } from '../../errors/api-error'
 import { EventsRepository } from '../../repositories/events-repository'
 
 export class GetEventUseCase {
@@ -7,7 +8,7 @@ export class GetEventUseCase {
     const event = await this.eventsRepository.findById(eventId)
 
     if (!event) {
-      throw new Error('Event not found.')
+      throw new APIError(404, 'Event not found.')
     }
 
     return event

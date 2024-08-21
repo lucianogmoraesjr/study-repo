@@ -1,3 +1,4 @@
+import { APIError } from '../../errors/api-error'
 import { AttendeesRepository } from '../../repositories/attendees-repository'
 
 export class GetAttendeeBadgeUseCase {
@@ -7,7 +8,7 @@ export class GetAttendeeBadgeUseCase {
     const attendee = await this.attendeesRepository.findById(id)
 
     if (!attendee) {
-      throw new Error('Attendee not found.')
+      throw new APIError(404, 'Attendee not found.')
     }
 
     return attendee

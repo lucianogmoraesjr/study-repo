@@ -21,6 +21,7 @@ export const createEvent: FastifyPluginAsyncZod = async function (app) {
       schema: {
         body: createEventBodySchema,
         response: createEventResponseSchema,
+        tags: ['events'],
       },
     },
     async (request, reply) => {
