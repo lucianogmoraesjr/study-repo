@@ -1,7 +1,7 @@
 import { EventsRepository } from '../../repositories/events-repository'
+import { generateSlug } from '../../utils/generate-slug'
 
 export interface CreateEventUseCaseRequest {
-  slug: string
   title: string
   details: string | null
   maximumAttendees: number | null
@@ -12,10 +12,17 @@ export class CreateEventUseCase {
 
   async execute({
     details,
-    slug,
     title,
     maximumAttendees,
   }: CreateEventUseCaseRequest) {
+    const slug = generateSlug(title)
+
+    const eventWithSameSlug = await this.eventsRepository.findBySlug(slug)
+
+    if (eventWithSameSlug) {
+      throw new Error('A event with same slug already exists.')
+    }
+
     const event = await this.eventsRepository.create({
       slug,
       title,
