@@ -26,6 +26,7 @@ export const getEventAttendees: FastifyPluginAsyncZod = async (app) => {
                 checkedInAt: z.date().nullable(),
               }),
             ),
+            total: z.number(),
           }),
         },
       },
@@ -36,7 +37,7 @@ export const getEventAttendees: FastifyPluginAsyncZod = async (app) => {
 
       const fetchEventAttendeesUseCase = makeFetchEventAttendeesUseCase()
 
-      const attendees = await fetchEventAttendeesUseCase.execute({
+      const { attendees, total } = await fetchEventAttendeesUseCase.execute({
         eventId,
         pageIndex,
         query,
@@ -50,6 +51,7 @@ export const getEventAttendees: FastifyPluginAsyncZod = async (app) => {
           createdAt: attendee.createdAt,
           checkedInAt: attendee.checkIn?.createdAt ?? null,
         })),
+        total,
       })
     },
   )

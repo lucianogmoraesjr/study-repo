@@ -14,12 +14,15 @@ export class FetchEventAttendeesUseCase {
     pageIndex = 0,
     query,
   }: FetchEventAttendeesUseCaseRequest) {
-    const attendees = await this.attendeesRepository.findAllByEvent({
-      eventId,
-      pageIndex,
-      query,
-    })
+    const [attendees, totalAttendees] = await Promise.all([
+      this.attendeesRepository.findAllByEvent({
+        eventId,
+        pageIndex,
+        query,
+      }),
+      this.attendeesRepository.countAttendeesForEvent(eventId),
+    ])
 
-    return attendees
+    return { attendees, total: totalAttendees }
   }
 }
