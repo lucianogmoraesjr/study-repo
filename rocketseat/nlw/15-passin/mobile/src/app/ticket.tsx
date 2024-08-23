@@ -4,6 +4,7 @@ import {
   Alert,
   Modal,
   ScrollView,
+  Share,
   Text,
   TouchableOpacity,
   View,
@@ -15,11 +16,14 @@ import { Header } from '@/components/header'
 import { colors } from '@/styles/colors'
 
 import { QRCode } from '@/components/qrcode'
+import { useBadgeStore } from '@/store/badge-store'
 import * as ImagePicker from 'expo-image-picker'
+import { Redirect } from 'expo-router'
 
 export default function Ticket() {
-  const [image, setImage] = useState('')
   const [showQRCode, setShowQRCode] = useState(false)
+
+  const { data, remove, updateImage } = useBadgeStore()
 
   async function handleSelectImage() {
     try {
@@ -30,7 +34,7 @@ export default function Ticket() {
       })
 
       if (result.assets) {
-        setImage(result.assets[0].uri)
+        updateImage(result.assets[0].uri)
       }
     } catch (error) {
       console.log(error)
@@ -40,6 +44,23 @@ export default function Ticket() {
 
   function handleShowQRCode() {
     setShowQRCode(true)
+  }
+
+  async function handleShare() {
+    try {
+      if (data?.checkInURL) {
+        await Share.share({
+          message: data.checkInURL,
+        })
+      }
+    } catch (error) {
+      console.log(error)
+      Alert.alert('Compartilhar', 'Não foi possível compartilhar.')
+    }
+  }
+
+  if (!data) {
+    return <Redirect href="/" />
   }
 
   return (
@@ -53,8 +74,8 @@ export default function Ticket() {
       >
         <Credential
           onChangeAvatar={handleSelectImage}
-          image={image}
           onShowQRCode={handleShowQRCode}
+          badge={data}
         />
 
         <FontAwesome
@@ -69,12 +90,16 @@ export default function Ticket() {
         </Text>
 
         <Text className="text-white font-regular text-base mt-1 mb-6">
-          Mostre ao mundo que você vai participar do Unite Summit!
+          Mostre ao mundo que você vai participar do {data.eventTitle}!
         </Text>
 
-        <Button title="Compartilhar" />
+        <Button title="Compartilhar" onPress={handleShare} />
 
-        <TouchableOpacity activeOpacity={0.7} className="mt-10">
+        <TouchableOpacity
+          activeOpacity={0.7}
+          className="mt-10"
+          onPress={remove}
+        >
           <Text className="text-base text-white font-bold text-center">
             Remover ingresso
           </Text>

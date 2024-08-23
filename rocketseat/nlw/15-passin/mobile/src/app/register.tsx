@@ -1,22 +1,58 @@
 import { FontAwesome6, MaterialIcons } from '@expo/vector-icons'
-import { Image, StatusBar, View } from 'react-native'
+import { Alert, Image, StatusBar, View } from 'react-native'
 
 import { Button } from '@/components/button'
 import { Input } from '@/components/input'
+import { api } from '@/lib/api'
+import { useBadgeStore } from '@/store/badge-store'
 import { colors } from '@/styles/colors'
+import { isAxiosError } from 'axios'
 import { Link, router } from 'expo-router'
 import { useState } from 'react'
 
 export default function Register() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
-  function handleRegister() {
-    // if (!name.trim() || !email.trim()) {
-    //   return Alert.alert('Inscrição', 'Preencha todos os campos.')
-    // }
+  const { save } = useBadgeStore()
 
-    router.push('/ticket')
+  async function handleRegister() {
+    try {
+      if (!name.trim() || !email.trim()) {
+        return Alert.alert('Inscrição', 'Preencha todos os campos.')
+      }
+
+      setIsLoading(true)
+
+      const {
+        data: { attendeeId },
+      } = await api.post<{ attendeeId: number }>(
+        '/events/9e9bd979-9d10-4915-b339-3786b1634f33/attendees',
+        {
+          name,
+          email,
+        },
+      )
+
+      const { data } = await api.get(`/attendees/${attendeeId}/badge`)
+
+      save(data.badge)
+
+      Alert.alert('Inscrição', 'Inscrição realizada com sucesso!', [
+        { text: 'Ok', onPress: () => router.push('/ticket') },
+      ])
+    } catch (error) {
+      console.log(error)
+
+      if (isAxiosError(error)) {
+        console.log(error.response?.data.message)
+      }
+
+      Alert.alert('Inscrição', 'Erro ao realizar a inscrição.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -50,7 +86,12 @@ export default function Register() {
           />
         </Input>
 
-        <Button title="Realizar inscrição" onPress={handleRegister} />
+        <Button
+          title="Realizar inscrição"
+          onPress={handleRegister}
+          isLoading={isLoading}
+          disabled={isLoading}
+        />
 
         <Link
           href="/"
