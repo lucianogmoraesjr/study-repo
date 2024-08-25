@@ -16,3 +16,9 @@ app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
 
 app.register(routes)
+
+app.setErrorHandler((error, _, reply) => {
+  console.log(error)
+
+  return reply.status(500).send({ message: 'Internal server error.' })
+})

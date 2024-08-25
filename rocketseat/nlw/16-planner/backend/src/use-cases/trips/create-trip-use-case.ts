@@ -1,14 +1,9 @@
-import dayjs from 'dayjs'
-import 'dayjs/locale/pt-br'
-import localizedFormat from 'dayjs/plugin/localizedFormat'
 import nodemailer from 'nodemailer'
 
 import { AppError } from '../../errors/app-error'
+import { dayjs } from '../../lib/dayjs'
 import { getMailClient } from '../../lib/mail'
 import { TripsRepository } from '../../repositories/trips-repository'
-
-dayjs.extend(localizedFormat)
-dayjs.locale('pt-br')
 
 interface CreateTripUseCaseRequest {
   destination: string
