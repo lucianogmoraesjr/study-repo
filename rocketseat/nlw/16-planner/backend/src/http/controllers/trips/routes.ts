@@ -5,12 +5,14 @@ import { confirmTrip } from './confirm-trip'
 import { createTrip } from './create-trip'
 import { fetchTrips } from './fetch-trips'
 import { getTrip } from './get-trip'
+import { updateTrip } from './update-trip'
 
 export async function tripsRoutes(app: FastifyInstance) {
   app.get('/trips', fetchTrips)
   app.register(getTrip)
   app.register(createTrip)
   app.register(confirmTrip)
+  app.register(updateTrip)
   app.register(activitiesRoutes)
   app.register(linksRoutes)
 }

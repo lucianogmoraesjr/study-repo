@@ -4,7 +4,7 @@ import { makeConfirmParticipantUseCase } from '../../../use-cases/participants/f
 
 export const confirmParticipant: FastifyPluginAsyncZod = async (app) => {
   app.get(
-    '/:participantId/confirm',
+    '/participants/:participantId/confirm',
     {
       schema: {
         params: z.object({

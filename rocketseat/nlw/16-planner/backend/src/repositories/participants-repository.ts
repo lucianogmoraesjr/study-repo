@@ -6,5 +6,6 @@ export type UpdateParticipant = Omit<Prisma.ParticipantUpdateInput, 'id'> & {
 
 export interface ParticipantsRepository {
   findById(id: string): Promise<Participant | null>
+  create(data: Prisma.ParticipantUncheckedCreateInput): Promise<Participant>
   update(data: UpdateParticipant): Promise<Participant>
 }

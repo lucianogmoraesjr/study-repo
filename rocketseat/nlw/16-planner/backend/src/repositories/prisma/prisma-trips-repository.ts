@@ -2,8 +2,10 @@ import { Trip } from '@prisma/client'
 import { prisma } from '../../lib/prisma'
 import {
   CreateTrip,
+  TripDetails,
   TripsRepository,
   TripWithActivities,
+  TripWithAllParticipants,
   TripWithLinks,
   TripWithParticipants,
   UpdateTrip,
@@ -57,6 +59,45 @@ export class PrismaTripsRepository implements TripsRepository {
       },
       include: {
         links: true,
+      },
+    })
+
+    return trip
+  }
+
+  async findTripParticipants(
+    id: string,
+  ): Promise<TripWithAllParticipants | null> {
+    const trip = await prisma.trip.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        participants: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            isConfirmed: true,
+          },
+        },
+      },
+    })
+
+    return trip
+  }
+
+  async findTripDetails(id: string): Promise<TripDetails | null> {
+    const trip = await prisma.trip.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        destination: true,
+        startsAt: true,
+        endsAt: true,
+        isConfirmed: true,
       },
     })
 

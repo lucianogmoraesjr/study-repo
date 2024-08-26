@@ -1,4 +1,4 @@
-import { Participant } from '@prisma/client'
+import { Participant, Prisma } from '@prisma/client'
 import { prisma } from '../../lib/prisma'
 import {
   ParticipantsRepository,
@@ -11,6 +11,16 @@ export class PrismaParticipantsRepository implements ParticipantsRepository {
       where: {
         id,
       },
+    })
+
+    return participant
+  }
+
+  async create(
+    data: Prisma.ParticipantUncheckedCreateInput,
+  ): Promise<Participant> {
+    const participant = await prisma.participant.create({
+      data,
     })
 
     return participant
