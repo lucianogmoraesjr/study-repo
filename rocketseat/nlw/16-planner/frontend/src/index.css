@@ -5,3 +5,12 @@
 * {
   min-width: 0;
 }
+
+input {
+  color-scheme: dark;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator, 
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
