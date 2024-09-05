@@ -1,5 +1,8 @@
 import { FormEvent, useState } from 'react'
 import { DateRange } from 'react-day-picker'
+import { useNavigate } from 'react-router-dom'
+
+import { api } from '../../lib/axios'
 
 import { ConfirmTripModal } from './confirm-trip-modal'
 import { InviteGuestModal } from './invite-guest-modal'
@@ -11,12 +14,15 @@ export function CreateTripPage() {
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false)
   const [isConfirmTripModalOpen, setIsConfirmTripModalOpen] = useState(false)
 
+  const [destination, setDestination] = useState('')
   const [ownerName, setOwnerName] = useState('')
   const [ownerEmail, setOwnerEmail] = useState('')
   const [eventDate, setEventDate] = useState<DateRange | undefined>()
   const [emailsToInvite, setEmailsToInvite] = useState<string[]>([
     'johndoe@mail.com',
   ])
+
+  const navigate = useNavigate()
 
   function handleOpenInviteGuestsStep() {
     setIsInviteGuestsStepOpen(true)
@@ -65,15 +71,35 @@ export function CreateTripPage() {
     setEmailsToInvite((prevState) => prevState.filter((item) => item !== email))
   }
 
-  function handleConfirmTrip(event: FormEvent<HTMLFormElement>) {
+  async function handleConfirmTrip(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    console.log({
+    if (!destination) {
+      return
+    }
+
+    if (!eventDate?.from || !eventDate.to) {
+      return
+    }
+
+    if (emailsToInvite.length === 0) {
+      return
+    }
+
+    if (!ownerName || !ownerEmail) {
+      return
+    }
+
+    const { data } = await api.post('/trips', {
+      destination,
+      startsAt: eventDate.from,
+      endsAt: eventDate.to,
       ownerName,
       ownerEmail,
-      eventDate,
       emailsToInvite,
     })
+
+    navigate(`/trips/${data.tripId}`)
   }
 
   return (
@@ -89,6 +115,8 @@ export function CreateTripPage() {
 
         <div className="space-y-4">
           <DestinationAndDateStep
+            destination={destination}
+            onDestinationChange={setDestination}
             isInviteInputOpen={isInviteGuestsStepOpen}
             eventDate={eventDate}
             onDateChange={setEventDate}

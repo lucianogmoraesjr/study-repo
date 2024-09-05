@@ -1,15 +1,39 @@
+import { parse } from 'date-fns'
 import { Calendar, Clock, Tag, X } from 'lucide-react'
-import { useRef } from 'react'
+import { FormEvent, useRef } from 'react'
+import { useParams } from 'react-router-dom'
 
 import { Button } from '../../components/button'
+import { api } from '../../lib/axios'
 
 interface CreateActivityModalProps {
   onClose: () => void
 }
 
 export function CreateActivityModal({ onClose }: CreateActivityModalProps) {
+  const { tripId } = useParams()
+
   const timeInputRef = useRef<HTMLInputElement>(null)
   const dateInputRef = useRef<HTMLInputElement>(null)
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const formData = new FormData(event.currentTarget)
+
+    const title = formData.get('title')
+    const date = formData.get('date')
+    const time = formData.get('time')
+
+    const dateTime = parse(`${date} ${time}`, 'yyyy-MM-dd HH:mm', new Date())
+
+    await api.post(`/trips/${tripId}/activities`, {
+      title,
+      occursAt: dateTime.toISOString(),
+    })
+
+    onClose()
+  }
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/60">
@@ -29,7 +53,7 @@ export function CreateActivityModal({ onClose }: CreateActivityModalProps) {
         </div>
 
         <form
-          // onSubmit={onSubmit}
+          onSubmit={handleSubmit}
           className="flex flex-col items-center justify-between gap-3"
         >
           <div className="flex w-full flex-col gap-2">

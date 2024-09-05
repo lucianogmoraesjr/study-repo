@@ -14,6 +14,8 @@ import { DateRangePicker } from '../../../components/date-range-picker'
 interface DestinationAndDateStepProps {
   isInviteInputOpen: boolean
   eventDate: DateRange | undefined
+  destination: string
+  onDestinationChange: (destination: string) => void
   onDateChange: (date: DateRange | undefined) => void
   onOpenInviteInput: () => void
   onCloseInviteInput: () => void
@@ -22,9 +24,11 @@ interface DestinationAndDateStepProps {
 export function DestinationAndDateStep({
   isInviteInputOpen,
   eventDate,
+  destination,
   onDateChange,
   onCloseInviteInput,
   onOpenInviteInput,
+  onDestinationChange,
 }: DestinationAndDateStepProps) {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
 
@@ -60,7 +64,9 @@ export function DestinationAndDateStep({
         <MapPin className="size-5 text-zinc-400" />
         <input
           disabled={isInviteInputOpen}
+          value={destination}
           placeholder="Para onde você vai?"
+          onChange={(e) => onDestinationChange(e.target.value)}
           className="flex-1 bg-transparent text-lg placeholder-zinc-400 outline-none"
         />
       </div>
