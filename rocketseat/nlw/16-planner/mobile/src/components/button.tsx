@@ -1,76 +1,66 @@
-import { cn } from '@/utils/cn'
-import { createContext, useContext } from 'react'
+import { createContext, useContext } from "react"
+
 import {
-  ActivityIndicator,
   Text,
   TextProps,
   TouchableOpacity,
+  ActivityIndicator,
   TouchableOpacityProps,
-} from 'react-native'
-import { tv, VariantProps } from 'tailwind-variants'
+} from "react-native"
+import clsx from "clsx"
 
-const buttonVariants = tv({
-  base: 'w-full h-11 flex-row items-center justify-center gap-2 rounded-lg',
+type Variants = "primary" | "secondary"
 
-  variants: {
-    variant: {
-      primary: 'bg-lime-300',
-      secondary: 'bg-zinc-800',
-    },
-  },
+type ButtonProps = TouchableOpacityProps & {
+  variant?: Variants
+  isLoading?: boolean
+}
 
-  defaultVariants: {
-    variant: 'primary',
-  },
-})
+const ThemeContext = createContext<{ variant?: Variants }>({})
 
-const VariantContext = createContext<VariantProps<typeof buttonVariants>>({})
-
-type ButtonProps = TouchableOpacityProps &
-  VariantProps<typeof buttonVariants> & {
-    isLoading?: boolean
-  }
-
-function Button({ className, variant, isLoading, ...props }: ButtonProps) {
+function Button({
+  variant = "primary",
+  children,
+  isLoading,
+  className,
+  ...rest
+}: ButtonProps) {
   return (
     <TouchableOpacity
+      className={clsx(
+        "h-11 flex-row items-center justify-center rounded-lg gap-2 px-2",
+        {
+          "bg-lime-300": variant === "primary",
+          "bg-zinc-800": variant === "secondary",
+        },
+        className
+      )}
       activeOpacity={0.7}
       disabled={isLoading}
-      className={cn(buttonVariants({ variant }), className)}
-      {...props}
+      {...rest}
     >
-      <VariantContext.Provider value={{ variant }}>
-        {isLoading ? (
-          <ActivityIndicator
-            className={cn(
-              'text-lime-950',
-              variant === 'secondary' && 'text-zinc-200',
-            )}
-          />
-        ) : (
-          props.children
-        )}
-      </VariantContext.Provider>
+      <ThemeContext.Provider value={{ variant }}>
+        {isLoading ? <ActivityIndicator className="text-lime-950" /> : children}
+      </ThemeContext.Provider>
     </TouchableOpacity>
   )
 }
 
-type TitleProps = TextProps
-
-function Title({ className, ...props }: TitleProps) {
-  const { variant } = useContext(VariantContext)
+function Title({ children }: TextProps) {
+  const { variant } = useContext(ThemeContext)
 
   return (
     <Text
-      className={cn(
-        'font-semibold text-base text-lime-950',
-        variant === 'secondary' && 'text-zinc-200',
-        className,
-      )}
-      {...props}
-    />
+      className={clsx("text-base font-semibold", {
+        "text-lime-950": variant === "primary",
+        "text-zinc-200": variant === "secondary",
+      })}
+    >
+      {children}
+    </Text>
   )
 }
+
 Button.Title = Title
 
 export { Button }

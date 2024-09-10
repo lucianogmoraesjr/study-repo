@@ -1,41 +1,54 @@
-import { colors } from '@/styles/colors'
-import { cn } from '@/utils/cn'
-import { Platform, TextInput, TextInputProps, View } from 'react-native'
-import { tv, VariantProps } from 'tailwind-variants'
+import { ReactNode } from "react"
+import {
+  TextInput,
+  TextInputProps,
+  View,
+  ViewProps,
+  Platform,
+} from "react-native"
+import clsx from "clsx"
 
-const inputVariants = tv({
-  base: 'px-4 h-14 rounded-lg border border-zinc-800 flex-row items-center gap-2',
+import { colors } from "@/styles/colors"
 
-  variants: {
-    variant: {
-      primary: 'min-h-16 max-h-16 border-0',
-      secondary: 'bg-zinc-950',
-      tertiary: 'bg-zinc-900',
-    },
-  },
+type Variants = "primary" | "secondary" | "tertiary"
 
-  defaultVariants: {
-    variant: 'primary',
-  },
-})
+type InputProps = ViewProps & {
+  children: ReactNode
+  variant?: Variants
+}
 
-type InputProps = React.ComponentProps<typeof View> &
-  VariantProps<typeof inputVariants>
-
-function Input({ className, variant, ...props }: InputProps) {
+function Input({
+  children,
+  variant = "primary",
+  className,
+  ...rest
+}: InputProps) {
   return (
-    <View className={cn(inputVariants({ variant }), className)} {...props} />
+    <View
+      className={clsx(
+        "min-h-16 max-h-16 flex-row items-center gap-2",
+        {
+          "h-14 px-4 rounded-lg border border-zinc-800": variant !== "primary",
+          "bg-zinc-950": variant === "secondary",
+          "bg-zinc-900": variant === "tertiary",
+        },
+        className
+      )}
+      {...rest}
+    >
+      {children}
+    </View>
   )
 }
 
-function Field(props: TextInputProps) {
+function Field({ ...rest }: TextInputProps) {
   return (
     <TextInput
-      className="flex-1 text-lg leading-tight text-zinc-100"
+      className="flex-1 text-zinc-100 text-lg font-regular"
       placeholderTextColor={colors.zinc[400]}
       cursorColor={colors.zinc[100]}
-      selectionColor={Platform.OS === 'ios' ? colors.zinc[100] : undefined}
-      {...props}
+      selectionColor={Platform.OS === "ios" ? colors.zinc[100] : undefined}
+      {...rest}
     />
   )
 }
