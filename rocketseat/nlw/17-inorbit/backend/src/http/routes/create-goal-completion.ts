@@ -1,6 +1,7 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import z from 'zod'
-import { createGoalCompletionUseCase } from '../use-cases/create-goal-completion-use-case'
+
+import { createGoalCompletionUseCase } from '../../use-cases/create-goal-completion-use-case'
 
 export const createGoalCompletion: FastifyPluginAsyncZod = async app => {
   app.post(
